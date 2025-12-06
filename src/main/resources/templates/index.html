@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chinese House - Restaurant</title>
+    <meta property="og:title" content="Chinese House - Restaurant">
+    <link rel="icon" th:href="@{/assests/Chinese House_page-0001.jpg}" type="image/png">
+    <meta property="og:description" content="Chinese House">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="author" content="JashwanthReddy">
+    <meta content="" name="keywords">
+    <meta content="Chinese House" name="description">
+    <link href="https://www.fontspace.com/category/samurai" target="_blank">
+
+
+    <!-- Favicon -->
+    <link th:href="@{/logo-img/Chinese House logo-svg.png}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/css/animate.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet" type="text/css" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+	<!--icons-->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="bg-white p-0">
+        <!-- Spinner Start -     
+			 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        - Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class=" position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a th:href="@{/index}" class="navbar-brand p-0">
+                    <!--<h1 class="text-primary m-0">Chinese House</h1>-->
+                    <img th:src="@{/logo-img/Chinese House logo-svg.png}" alt="Logo">
+                    
+
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+						<a th:href="@{/index}" class="nav-item nav-link">Home</a>
+						<a th:href="@{/about}" class="nav-item nav-link">About</a>
+						<a href="#reservation" class="nav-item nav-link">Reservation</a>
+						<a th:href="@{/menu}" class="nav-item nav-link">Menu</a>
+						
+						<a th:href="@{/cart}" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+						<a class="nav-link" th:href="${role == 'ROLE_ADMIN'} ? 'dashboard' : 'my-orders'">my orders</a>
+                    </div>
+					<form th:action="@{/logout}" method="post">
+						<!--  	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+						  	<button class="logoutbtnbtn btn-primary py-2 px-4" type="submit">Logout</button>
+						  </form>
+						  
+				<!--	<a th:href="@{/register}" class="btn btn-primary py-2 px-4"><i class="fa-solid fa-user"></i>Signup</a>-->
+                </div>
+            </nav>
+
+            <div class=" py-5 bg-dark hero-header mb-5">
+                <div class="container my-5 py-5">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
+                            <p class="text-white animated slideInLeft mb-4 pb-2">Chinese House brings you the authentic taste of Indo-Chinese cuisine, bursting with bold flavors and fresh ingredients.</p>
+                            <a href="#reservation" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                            <img class="img-fluid" th:src="@{/assests/hero.png}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Service Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item rounded pt-3">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
+                                <h5>Master Chefs</h5>
+                                <p>Experience culinary excellence crafted by our expert Master Chef with passion and precision.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item rounded pt-3">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                                <h5>Quality Food</h5>
+                                <p>Savor delicious, hygienic, and freshly prepared quality food made with the finest ingredients.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item rounded pt-3">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
+                                <h5>Online Order</h5>
+                                <p>Order your favorite meals online anytime with Zomato and Swiggy—fast, easy, and delivered to your doorstep.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="service-item rounded pt-3">
+                            <div class="p-4">
+                                <i class="fa fa-3x fa-headset text-primary mb-4"></i>
+                                <h5>Service</h5>
+                                <p>Enjoy delicious food anytime and everyday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" th:src="@{/assests/IMG-20250706-WA0002.jpg}">
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" th:src="@{/assests/IMG-20250706-WA0001.jpg}" style="margin-top: 25%;">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" th:src="@{/assests/about-3.jpg}">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" th:src="@{/assests/IMG-20250706-WA0004.jpg}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
+                        <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Chinese House</h1>
+                        <p class="mb-4">Chinese House</p>
+                        <p class="mb-4">Experience the authentic flavors of India in the heart of your city. We serve delicious, freshly prepared Chinese cuisine in a warm and inviting atmosphere.</p>
+                        <a class="btn btn-primary py-3 px-5 mt-2" th:href="@{/about}">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+        <!-- Special Items Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Specials items</h5>
+                    <h1 class="mb-4">Our Items</h1>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card h-100 text-center border-0 shadow-sm">
+                            <img th:src="@{/assests/palak paneer-food.jpg}" class="card-img-top" alt="palak paneer">
+                            <div class="card-body">
+                                <h5 class="card-title">Palak paneer</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card h-100 text-center border-0 shadow-sm">
+                            <img th:src="@{/assests/afghani chicken-food.jpg}" class="card-img-top" alt="afghani chicken">
+                            <div class="card-body">
+                                <h5 class="card-title">Afghani chicken</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card h-100 text-center border-0 shadow-sm">
+                            <img th:src="@{/assests/paneer butter masala-food.jpg}" class="card-img-top" alt="paneer butter masala">
+                            <div class="card-body">
+                                <h5 class="card-title">Paneer butter masala</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card h-100 text-center border-0 shadow-sm">
+                            <img th:src="@{/assests/tandoori chicken-food.jpg}" class="card-img-top" alt="tandoori chicken">
+                            <div class="card-body">
+                                <h5 class="card-title">Tandoori chicken</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Spicy Items End -->
+
+        <!-- Reservation Start -->
+        <div id="reservation" class="container-xxl py-5 px-0 wow fadeInUp reservation-section" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <div class="video">
+                        <button type="button" class="btn-play" data-bs-toggle="modal" data-bs-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+				<div class="col-md-8 bg-dark d-flex align-items-center">
+				    <div class="p-4 wow fadeInUp" data-wow-delay="0.2s">
+				        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+				        <h1 class="text-white mb-4">Book A Table Online</h1>
+				        
+				        <!-- Success/Error Messages -->
+				        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+				            <span th:text="${success}"></span>
+				            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				        </div>
+				        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+				            <span th:text="${error}"></span>
+				            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				        </div>
+				        
+				        <form class="reservation-form" th:action="@{/reservation}" method="post">
+				            <div class="row g-3">
+				                <div class="col-md-6">
+				                    <div class="form-floating">
+				                        <input type="text" class="form-control" id="name" name="name" 
+				                               placeholder="Your Name" required>
+				                        <label for="name">Your Name</label>
+				                    </div>
+				                </div>
+				                <div class="col-md-6">
+				                    <div class="form-floating">
+				                        <input type="email" class="form-control" id="email" name="email" 
+				                               placeholder="Your Email" required>
+				                        <label for="email">Your Email</label>
+				                    </div>
+				                </div>
+				                <div class="col-md-6">
+				                    <div class="form-floating date" id="date3" data-target-input="nearest">
+				                        <input type="text" class="form-control datetimepicker-input" 
+				                               id="datetime" name="dateTime" placeholder="Date & Time" 
+				                               data-target="#date3" data-toggle="datetimepicker" required />
+				                        <label for="datetime">Date & Time</label>
+				                    </div>
+				                </div>
+				                <div class="col-md-6">
+				                    <div class="form-floating">
+				                        <select class="form-select" id="select1" name="numberOfPeople" required>
+				                            <option value="">Select People</option>
+				                            <option value="1">1 Person</option>
+				                            <option value="2">2 People</option>
+				                            <option value="3">3 People</option>
+				                            <option value="4">4 People</option>
+				                            <option value="5">5+ People</option>
+				                        </select>
+				                        <label for="select1">No Of People</label>
+				                    </div>
+				                </div>
+				                <div class="col-12">
+				                    <div class="form-floating">
+				                        <textarea class="form-control" placeholder="Special Request" 
+				                                  id="message" name="specialRequest" style="height: 100px"></textarea>
+				                        <label for="message">Special Request</label>
+				                    </div>
+				                </div>
+				                <div class="col-12">
+				                    <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+				                </div>
+				            </div>
+				        </form>
+				    </div>
+				</div>
+            </div>
+        </div>
+
+		<!-- Video Modal -->
+		        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+		            <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+		                <div class="modal-content rounded-0">
+		                    <div class="modal-header">
+		                        <h5 class="modal-title" id="videoModalLabel">Chinese House Video</h5>
+		                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		                    </div>
+		                    <div class="modal-body p-0">
+		                        <div class="video-container">
+		                            <video id="video" controls preload="metadata" muted>
+		                                <source th:src="@{/video.mp4}" type="video/mp4">
+		                                Your browser does not support the video tag.
+		                            </video>
+		                            
+		                            <!-- Image Fallback -->
+		                            <div id="imageFallback" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(15, 23, 43, .8), rgba(15, 23, 43, .8)), url('./assests/IMG-20250706-WA0002.jpg'); background-size: cover; background-position: center; display: none; align-items: center; justify-content: center; color: white; text-align: center;">
+		                                <div>
+		                                    <i class="fa fa-play-circle fa-4x mb-3" style="color: var(--primary);"></i>
+		                                    <h4>Chinese House Experience</h4>
+		                                    <p class="mb-3">Experience the authentic taste of Indo-Chinese cuisine</p>
+		                                    <div class="d-flex justify-content-center">
+		                                        <div class="me-3">
+		                                            <i class="fa fa-utensils fa-2x text-primary"></i>
+		                                            <p class="small">Fresh Ingredients</p>
+		                                        </div>
+		                                        <div class="me-3">
+		                                            <i class="fa fa-star fa-2x text-primary"></i>
+		                                            <p class="small">Quality Food</p>
+		                                        </div>
+		                                        <div>
+		                                            <i class="fa fa-heart fa-2x text-primary"></i>
+		                                            <p class="small">Made with Love</p>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		
+		
+        <!--<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Chinese House Video</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        - 9:16 aspect ratio container --
+                        <div class="video-container" style="position: relative; width: 100%; height: 0; padding-bottom: 177.78%; /* 16/9 = 1.7778, so 9/16 = 0.5625, inverse = 1.7778 */">
+                            -- Video Element --
+                            <video id="video" controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" muted  src="./img/video.mp4">
+                                <source th:src="@{/assests/video.mp4}"  />
+                                Your browser does not support the video tag.
+                            </video>
+                            
+                            -- Image Fallback --
+                            <div id="imageFallback" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(15, 23, 43, .8), rgba(15, 23, 43, .8)), url('img/video.mp4'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+                                <div>
+                                    <i class="fa fa-play-circle fa-4x mb-3" style="color: var(--primary);"></i>
+                                    <h4>Chinese House Experience</h4>
+                                    <p class="mb-3">Experience the authentic taste of Indo-Chinese cuisine</p>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="me-3">
+                                            <i class="fa fa-utensils fa-2x text-primary"></i>
+                                            <p class="small">Fresh Ingredients</p>
+                                        </div>
+                                        <div class="me-3">
+                                            <i class="fa fa-star fa-2x text-primary"></i>
+                                            <p class="small">Quality Food</p>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-heart fa-2x text-primary"></i>
+                                            <p class="small">Made with Love</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            -- Error Fallback -
+                            <div id="videoFallback" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: none; align-items: center; justify-content: center; color: white; text-align: center;">
+                                <div>
+                                    <i class="fa fa-exclamation-triangle fa-3x mb-3"></i>
+                                    <h5>Video Not Available</h5>
+                                    <p>Please try refreshing the page or contact us for assistance.</p>
+                                    <button class="btn btn-primary" onclick="document.getElementById('videoModal').querySelector('.btn-close').click()">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -- Reservation Start -->
+         
+        <!-- Owner Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Owner</h5>
+                    <h1 class="mb-4">Meet Our Owner</h1>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="team-item text-center rounded overflow-hidden">
+                            <div class="rounded-circle overflow-hidden m-4">
+                               <img class="img-fluid" th:src="@{/assests/photo.jpg}" alt="Owner">
+                            </div>
+                            <h5 class="mb-0">Mardhi JashwanthReddy</h5>
+                            <small>Founder & Owner</small>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-square btn-primary mx-1" href="https://www.facebook.com/jashreddy.mardhi.7/"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="https://www.instagram.com/jashwanthreddy_mardhi/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                            <p class="mt-3">Passionate about Indo-Chinese cuisine and dedicated to delivering the best dining experience to our guests.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Owner End -->
+
+        <!-- Google Maps Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Find Us</h5>
+                    <h1 class="mb-4">Our Location</h1>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div style="width: 100%; height: 400px;">
+                            <iframe
+                                src="https://www.google.com/maps?q=17-1-388/59/1,+Vinayak+Nagar+Colony,+Saidabad,+Hyderabad,+Telangana,+Secunderabad+500059&output=embed"
+                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Google Maps End -->
+		<!-- Testimonial Start -->
+		        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+		            <div class="container">
+		                <div class="text-center">
+		                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
+		                    <h1 class="mb-5">Our Clients Say!!!</h1>
+		                </div>
+		                <div class="owl-carousel testimonial-carousel">
+		                    <div class="testimonial-item bg-transparent border rounded p-4">
+		                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+		                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+		                        <div class="d-flex align-items-center">
+		                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
+		                            <div class="ps-3">
+		                                <h5 class="mb-1">Client Name</h5>
+		                                <small>Profession</small>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="testimonial-item bg-transparent border rounded p-4">
+		                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+		                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+		                        <div class="d-flex align-items-center">
+		                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 50px; height: 50px;">
+		                            <div class="ps-3">
+		                                <h5 class="mb-1">Client Name</h5>
+		                                <small>Profession</small>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="testimonial-item bg-transparent border rounded p-4">
+		                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+		                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+		                        <div class="d-flex align-items-center">
+		                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 50px; height: 50px;">
+		                            <div class="ps-3">
+		                                <h5 class="mb-1">Client Name</h5>
+		                                <small>Profession</small>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="testimonial-item bg-transparent border rounded p-4">
+		                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+		                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
+		                        <div class="d-flex align-items-center">
+		                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg" style="width: 50px; height: 50px;">
+		                            <div class="ps-3">
+		                                <h5 class="mb-1">Client Name</h5>
+		                                <small>Profession</small>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <!-- Testimonial End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
+                        <a class="btn btn-link" href="">About Us</a>
+                        <a class="btn btn-link" href="">Contact Us</a>
+                        <a class="btn btn-link" href="">Reservation</a>
+                        <a class="btn btn-link" href="">Privacy Policy</a>
+                        <a class="btn btn-link" href="">Terms & Condition</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>17-1-388/59/1, Vinayak Nagar Colony, Saidabad, Hyderabad, Telangana, Secunderabad 500059</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 9505637250</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>Chinesehouse@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/share/1BxxMGFKPk/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/chinesehousehyd?igsh=MTQxOHF0a2dtb2xtZw=="><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://maps.app.goo.gl/sumUNVEQLX176Dkr7?g_st=ic" target="_blank" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
+                        <p>01PM - 11PM</p>
+                        <h5 class="text-light fw-normal">Sunday</h5>
+                        <p>01PM - 11PM</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
+                        <p>Chinese House</p>
+                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            2025 &copy; <a class="border-bottom" href="#">Chinese House</a>, All Right Reserved.
+                            <br> 
+							<p>Designed and Developed by<a class="border-bottom" href="https://jashwanthreddy230.github.io/Portfolio/"> JashwanthReddy</a></p>
+
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+         
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/wow.min.js}"></script>
+    <script th:src="@{/js/easing.min.js}"></script>
+    <script th:src="@{/js/waypoints.min.js}"></script>
+    <script th:src="@{/js/counterup.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/moment.min.js}"></script>
+    <script th:src="@{/js/moment-timezone.min.js}"></script>
+    <script th:src="@{/js/tempusdominus-bootstrap-4.min.js}"></script>
+	
+	
+    <!-- Template Javascript -->
+    
+    <script th:src="@{/js/main.js}"></script>
+	<script>
+	        // Remove loading spinner
+	        window.addEventListener('load', function() {
+	            document.getElementById('spinner').classList.remove('show');
+	        });
+
+	        // Back to top button
+	        window.addEventListener('scroll', function() {
+	            const backToTop = document.querySelector('.back-to-top');
+	            if (window.scrollY > 300) {
+	                backToTop.style.display = 'block';
+	            } else {
+	                backToTop.style.display = 'none';
+	            }
+	        });
+
+	        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+	            e.preventDefault();
+	            window.scrollTo({ top: 0, behavior: 'smooth' });
+	        });
+
+	        // Navbar scroll effect
+	        window.addEventListener('scroll', function() {
+	            const navbar = document.querySelector('.navbar');
+	            if (window.scrollY > 50) {
+	                navbar.classList.add('sticky-top');
+	            } else {
+	                navbar.classList.remove('sticky-top');
+	            }
+	        });
+
+	        // Video Modal functionality
+	        document.addEventListener('DOMContentLoaded', function() {
+	            var videoModal = document.getElementById('videoModal');
+	            var videoElement = document.getElementById('video');
+	            
+	            // Handle modal shown event
+	            if(videoModal) {
+	                videoModal.addEventListener('shown.bs.modal', function () {
+	                    var imageFallback = document.getElementById('imageFallback');
+	                    
+	                    if(videoElement) {
+	                        videoElement.currentTime = 0;
+	                        videoElement.muted = false;
+	                        
+	                        var playPromise = videoElement.play();
+	                        
+	                        if (playPromise !== undefined) {
+	                            playPromise.then(function() {
+	                                console.log('Video started playing successfully');
+	                            }).catch(function(error) {
+	                                console.log('Video play failed:', error);
+	                                videoElement.muted = true;
+	                                videoElement.play().catch(function(e) {
+	                                    console.log('Video play failed even muted:', e);
+	                                    if(imageFallback) {
+	                                        imageFallback.style.display = 'flex';
+	                                        videoElement.style.display = 'none';
+	                                    }
+	                                });
+	                            });
+	                        }
+	                    } else {
+	                        if(imageFallback) {
+	                            imageFallback.style.display = 'flex';
+	                        }
+	                    }
+	                });
+	                
+	                // Handle modal hidden event
+	                videoModal.addEventListener('hidden.bs.modal', function () {
+	                    if(videoElement) {
+	                        videoElement.pause();
+	                        videoElement.currentTime = 0;
+	                        videoElement.muted = true;
+	                        videoElement.style.display = 'block';
+	                    }
+	                    
+	                    var imageFallback = document.getElementById('imageFallback');
+	                    if(imageFallback) {
+	                        imageFallback.style.display = 'none';
+	                    }
+	                });
+	            }
+	            
+	            // Video error handling
+	            if(videoElement) {
+	                videoElement.addEventListener('error', function(e) {
+	                    console.log('Video failed to load:', e);
+	                    var imageFallback = document.getElementById('imageFallback');
+	                    if(imageFallback) {
+	                        imageFallback.style.display = 'flex';
+	                        videoElement.style.display = 'none';
+	                    }
+	                });
+	            }
+	        });
+
+	        // Form submission handling
+	        document.querySelector('.reservation-form').addEventListener('submit', function(e) {
+	            e.preventDefault();
+	            alert('Thank you for your reservation request! We will contact you soon to confirm.');
+	        });
+
+	        // Newsletter subscription
+	        document.querySelector('.footer .btn-primary').addEventListener('click', function() {
+	            const email = this.parentElement.querySelector('input').value;
+	            if(email) {
+	                alert('Thank you for subscribing to our newsletter!');
+	                this.parentElement.querySelector('input').value = '';
+	            } else {
+	                alert('Please enter a valid email address.');
+	            }
+	        });
+	    </script>
+</body>
+</html>

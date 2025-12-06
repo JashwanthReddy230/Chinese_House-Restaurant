@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chinese House — Sign Up</title>
+  <meta property="og:title" content="Chinese House - Restaurant">
+  <meta property="og:description" content="Chinese House">
+  <meta name="author" content="JashwanthReddy">
+  <meta content="Chinese House" name="description">
+  
+  <link th:href="@{/logo-img/Chinese House logo-svg.png}" rel="icon">
+  
+   <link th:href="@{/css/signin.css}" rel="stylesheet" type="text/css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+   
+	  </style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="dragon">🐉</div>
+    <div class="dragon">🐲</div>
+    <div class="lantern-bg"></div>
+    <div class="lantern-bg"></div>
+    <div class="lantern-bg"></div>
+    <div class="floating-elements">🏮</div>
+    <div class="floating-elements">🌸</div>
+    <div class="floating-elements">🎋</div>
+    <div class="floating-elements">✨</div>
+  </div>
+
+  <div class="container">
+    <aside class="hero">
+      <div class="brand">
+        <div class="logo-text">Chinese House</div>
+        <div class="tagline">Authentic Indo-Chinese Cuisine</div>
+      </div>
+      <p class="slogan">Experience the perfect blend of traditional Chinese flavors with a modern twist. Fresh ingredients, bold spices, and authentic recipes crafted with passion.</p>
+      
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-utensils"></i>
+          <div>Authentic</div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-leaf"></i>
+          <div>Fresh</div>
+        </div>
+        <div class="feature">
+          <i class="fas fa-heart"></i>
+          <div>Flavorful</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card">
+      <h2>Create Account</h2>
+      <p class="subtitle">Join our community and discover amazing flavors</p>
+
+      <form id="signupForm"  th:action="@{/register}" method="post">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input id="fname" name="firstname" type="text" required placeholder="First Name">
+            </div>
+            <div class="error-message" id="fname-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input id="lname" name="lastname" type="text" required placeholder="Last Name">
+            </div>
+            <div class="error-message" id="lname-error"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+          </div>
+          <div class="error-message" id="email-error"></div>
+        </div>
+		
+		
+		<div class="form-group">
+		          <label for="username">Username</label>
+		          <div class="input-wrapper">
+		            <i class="fas fa-envelope"></i>
+		            <input id="username" name="username" type="text" required placeholder="you@example.com">
+		          </div>
+		          <div class="error-message" id="username-error"></div>
+		        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <div class="input-wrapper">
+            <i class="fas fa-phone"></i>
+            <input id="phone" name="phonenumber" type="tel" required placeholder="+91 9000000000">
+          </div>
+          <div class="error-message" id="phone-error"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input id="password" name="password" type="password" required placeholder="Enter password">
+          </div>
+          <div class="error-message" id="password-error"></div>
+        </div>
+
+  <!--      <div class="form-group">
+          <label for="confirm">Confirm Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input id="confirm" name="confirm" type="password" required placeholder="Confirm password">
+          </div>
+          <div class="error-message" id="confirm-error"></div>
+        </div>
+		-->
+        <button class="btn" type="submit" id="submitBtn">
+          <span>Create Account</span>
+        </button>
+
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <span>Creating your account...</span>
+        </div>
+
+        <div class="success-message" id="successMsg">
+          <i class="fas fa-check-circle"></i> Account created successfully! Redirecting to login...
+        </div>
+
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="socials">
+          <button type="button" class="social-btn" onclick="signupWithGoogle()">
+            <i class="fab fa-google" style="color: #ea4335;"></i>
+            Google
+          </button>
+          <button type="button" class="social-btn" onclick="signupWithFacebook()">
+            <i class="fab fa-facebook-f" style="color: #4267b2;"></i>
+            Facebook
+          </button>
+        </div>
+
+        <div class="footer-note">
+          Already have an account? <a th:href="@{/login}" onclick="goToLogin()">Login</a>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Create floating particles
+    function createParticles() {
+      for (let i = 0; i < 10; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        document.querySelector('.bg-animation').appendChild(particle);
+      }
+    }
+
+    // Form validation and submission
+    (function() {
+      const form = document.getElementById('signupForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const loading = document.getElementById('loading');
+      const successMsg = document.getElementById('successMsg');
+
+      const fields = ['fname', 'lname', 'email', 'phone', 'password', 'confirm'];
+
+      function showError(field, message) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        input.classList.add('error');
+        errorEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+      }
+
+      function clearError(field) {
+        const input = document.getElementById(field);
+        const errorEl = document.getElementById(field + '-error');
+        input.classList.remove('error');
+        errorEl.innerHTML = '';
+      }
+
+      function clearAllErrors() {
+        fields.forEach(field => clearError(field));
+      }
+
+      function validateField(field, value) {
+        switch (field) {
+          case 'fname':
+          case 'lname':
+            return value.length >= 2;
+          case 'email':
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+          case 'phone':
+            return /^[\+]?[0-9\s\-\(\)]{10,}$/.test(value);
+          case 'password':
+            return value.length >= 6;
+          case 'confirm':
+            return value === form.password.value;
+          default:
+            return true;
+        }
+      }
+
+      function validate() {
+        clearAllErrors();
+        let isValid = true;
+
+        const values = {
+          fname: form.fname.value.trim(),
+          lname: form.lname.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          password: form.password.value,
+          confirm: form.confirm.value
+        };
+
+        if (!values.fname) {
+          showError('fname', 'First name is required');
+          isValid = false;
+        } else if (!validateField('fname', values.fname)) {
+          showError('fname', 'First name must be at least 2 characters');
+          isValid = false;
+        }
+
+        if (!values.lname) {
+          showError('lname', 'Last name is required');
+          isValid = false;
+        } else if (!validateField('lname', values.lname)) {
+          showError('lname', 'Last name must be at least 2 characters');
+          isValid = false;
+        }
+
+        if (!values.email) {
+          showError('email', 'Email is required');
+          isValid = false;
+        } else if (!validateField('email', values.email)) {
+          showError('email', 'Please enter a valid email address');
+          isValid = false;
+        }
+
+        if (!values.phone) {
+          showError('phone', 'Phone number is required');
+          isValid = false;
+        } else if (!validateField('phone', values.phone)) {
+          showError('phone', 'Please enter a valid phone number');
+          isValid = false;
+        }
+
+        if (!values.password) {
+          showError('password', 'Password is required');
+          isValid = false;
+        } else if (!validateField('password', values.password)) {
+          showError('password', 'Password must be at least 6 characters');
+          isValid = false;
+        }
+
+        if (!values.confirm) {
+          showError('confirm', 'Please confirm your password');
+          isValid = false;
+        } else if (!validateField('confirm', values.confirm)) {
+          showError('confirm', 'Passwords do not match');
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      // Real-time validation
+      fields.forEach(field => {
+        const input = document.getElementById(field);
+        input.addEventListener('input', () => {
+          if (input.classList.contains('error')) {
+            clearError(field);
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          const value = input.value.trim();
+          if (value && !validateField(field, value)) {
+            const messages = {
+              fname: 'First name must be at least 2 characters',
+              lname: 'Last name must be at least 2 characters',
+              email: 'Please enter a valid email address',
+              phone: 'Please enter a valid phone number',
+              password: 'Password must be at least 6 characters',
+              confirm: 'Passwords do not match'
+            };
+            showError(field, messages[field]);
+          }
+        });
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validate()) {
+          return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<div class="spinner" style="width: 16px; height: 16px; margin-right: 8px;"></div> Creating Account...';
+        loading.style.display = 'flex';
+
+        // Simulate API call
+        setTimeout(() => {
+          loading.style.display = 'none';
+          successMsg.style.display = 'block';
+          form.reset();
+
+          setTimeout(() => {
+            alert('Account created successfully! Redirecting to login page...');
+            // window.location.href = '/login';
+          }, 2000);
+        }, 2000);
+      });
+    })();
+
+    function signupWithGoogle() {
+      alert('Google signup integration would be implemented here');
+    }
+
+    function signupWithFacebook() {
+      alert('Facebook signup integration would be implemented here');
+    }
+
+    function goToLogin() {
+      alert('Redirecting to login page...');
+      // window.location.href = '/login';
+    }
+
+    // Initialize particles
+    createParticles();
+
+    // Add some interactive effects
+    document.addEventListener('mousemove', function(e) {
+      const floatingElements = document.querySelectorAll('.floating-elements');
+      floatingElements.forEach((element, index) => {
+        const speed = (index + 1) * 0.02;
+        const x = (e.clientX * speed) - (window.innerWidth * speed / 2);
+        const y = (e.clientY * speed) - (window.innerHeight * speed / 2);
+        element.style.transform += ` translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
+    });
+  </script>
+</body>
+</html>

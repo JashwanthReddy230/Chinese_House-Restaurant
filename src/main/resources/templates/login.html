@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chinese House — Login</title>
+  <meta property="og:title" content="Chinese House - Restaurant">
+  <meta property="og:description" content="Chinese House">
+  <meta name="author" content="JashwanthReddy">
+  <meta content="Chinese House" name="description">
+  <!-- CSS -->
+  <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css">
+  <!-- Favicon -->
+    <link th:href="@{/logo-img/Chinese House logo-svg.png}" rel="icon">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="dragon">🐉</div>
+    <div class="dragon">🐲</div>
+    <div class="lantern-bg"></div>
+    <div class="lantern-bg"></div>
+    <div class="lantern-bg"></div>
+    <div class="floating-elements">🏮</div>
+    <div class="floating-elements">🌸</div>
+    <div class="floating-elements">🎋</div>
+    <div class="floating-elements">✨</div>
+  </div>
+
+  <div class="container" role="main">
+    <aside class="hero">
+      <div class="brand">
+        <div class="logo-text">Chinese House</div>
+        <div class="tagline">Welcome Back!</div>
+      </div>
+      <p class="slogan">
+        Experience authentic Indo-Chinese cuisine crafted with traditional recipes and fresh ingredients. Your table awaits.
+      </p>
+      <div class="welcome-features">
+        <div class="welcome-feature">
+          <i class="fas fa-crown"></i>
+          <div>Premium</div>
+        </div>
+        <div class="welcome-feature">
+          <i class="fas fa-shield-alt"></i>
+          <div>Secure</div>
+        </div>
+        <div class="welcome-feature">
+          <i class="fas fa-bolt"></i>
+          <div>Fast</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card" aria-labelledby="login-heading">
+      <h2 id="login-heading">
+        <i class="fas fa-sign-in-alt" style="color: var(--primary);"></i>
+        Login
+      </h2>
+      <p class="subtitle">Welcome back! Please sign in to your account.</p>
+
+      <form id="loginForm" th:action="@{/login}" method="post">
+        <div class="form-group">
+          <label for="username">
+            <i class="fas fa-envelope"></i>
+            Email Address
+          </label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input id="username" name="username" type="text" placeholder="enter username" required aria-required="true" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            <i class="fas fa-lock"></i>
+            Password
+          </label>
+          <div class="input-wrapper password-wrapper">
+            <i class="fas fa-key"></i>
+            <input id="password" name="password" type="password" placeholder="Enter your password" required aria-required="true" />
+            <button type="button" id="togglePwd" class="toggle-password" aria-label="Show password" title="Show password">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox-wrapper">
+            <input id="remember" type="checkbox">
+            <span>Remember me</span>
+          </label>
+          <a th:href="@{/forgotpassword}" class="forgot-link" onclick="goToForgotPassword()">Forgot Password?</a>
+        </div>
+
+        <button class="btn" type="submit">Login</button>
+
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="socials">
+          <button type="button" class="social-btn" onclick="signInWithGoogle()">
+            <i class="fab fa-google" style="color: #ea4335;"></i>
+            Google
+          </button>
+          <button type="button" class="social-btn" onclick="signInWithApple()">
+            <i class="fab fa-apple" style="color: #000;"></i>
+            Apple
+          </button>
+        </div>
+
+        <div class="footer-note">
+          Don't have an account? <a th:href="@{/register}" onclick="goToSignUp()">Create Account</a>
+        </div>
+
+        <div id="error" class="error" role="alert" aria-live="assertive"></div>
+        <div id="success" class="success" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </div>
+
+  <!-- <script>
+    // Create mystical particles
+    function createMysticalParticles() {
+      for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'mystical-particles';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+        document.querySelector('.bg-animation').appendChild(particle);
+      }
+    }
+
+    (function() {
+      const form = document.getElementById('loginForm');
+      const email = document.getElementById('username');
+      const pwd = document.getElementById('password');
+      const errorEl = document.getElementById('error');
+      const successEl = document.getElementById('success');
+      const toggle = document.getElementById('togglePwd');
+
+      // Password toggle functionality
+      toggle.addEventListener('click', () => {
+        const isPassword = pwd.type === 'password';
+        pwd.type = isPassword ? 'text' : 'password';
+        toggle.innerHTML = isPassword ? 
+          '<i class="fas fa-eye-slash"></i>' : 
+          '<i class="fas fa-eye"></i>';
+        toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        toggle.setAttribute('title', isPassword ? 'Hide password' : 'Show password');
+      });
+
+      function showError(message) {
+        errorEl.textContent = message;
+        errorEl.style.display = 'block';
+        successEl.style.display = 'none';
+      }
+
+      function showSuccess(message) {
+        successEl.textContent = message;
+        successEl.style.display = 'block';
+        errorEl.style.display = 'none';
+      }
+
+      function hideMessages() {
+        errorEl.style.display = 'none';
+        successEl.style.display = 'none';
+      }
+
+      function validate() {
+        hideMessages();
+        
+        if (!email.value.trim()) {
+          showError('Please enter your email address.');
+          email.focus();
+          return false;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+          showError('Please enter a valid email address.');
+          email.focus();
+          return false;
+        }
+
+        if (!pwd.value || pwd.value.length < 6) {
+          showError('Password must be at least 6 characters long.');
+          pwd.focus();
+          return false;
+        }
+        
+        return true;
+      }
+
+      // Real-time validation
+      email.addEventListener('input', hideMessages);
+      pwd.addEventListener('input', hideMessages);
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validate()) return;
+
+        const submitBtn = form.querySelector('.btn');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+
+        // Simulate login process
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          
+          showSuccess('Login successful! Redirecting to dashboard...');
+          
+          setTimeout(() => {
+            alert('Login successful! Redirecting to dashboard...');
+            window.location.href = "/dashboard";
+          }, 1500);
+        }, 2000);
+      });
+    })();
+
+    function signInWithGoogle() {
+      alert('Google sign-in integration would be implemented here');
+    }
+
+    function signInWithApple() {
+      alert('Apple sign-in integration would be implemented here');
+    }
+
+    function goToSignUp() {
+      alert('Redirecting to sign up page...');
+      window.location.href = '/signin.html';
+    }
+
+    function goToForgotPassword() {
+      alert('Redirecting to forgot password page...');
+      window.location.href = '/forgot-password';
+    }
+
+    // Initialize effects
+    createMysticalParticles();
+
+    // Mouse interaction effects
+    document.addEventListener('mousemove', function(e) {
+      const floatingElements = document.querySelectorAll('.floating-elements');
+      floatingElements.forEach((element, index) => {
+        const speed = (index + 1) * 0.015;
+        const x = (e.clientX * speed) - (window.innerWidth * speed / 2);
+        const y = (e.clientY * speed) - (window.innerHeight * speed / 2);
+        element.style.transform += ` translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
+    });
+  </script> -->
+</body>
+</html>
